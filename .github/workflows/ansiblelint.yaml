@@ -18,6 +18,7 @@ jobs:
           github_token: ${{ secrets.github_token }}
           reporter: github-pr-check
           ansiblelint_flags: "ansiblelint-testdata/test.yml"
+          ansiblelint_version: 24.12.2
 
       - name: ansible-lint github-check
         uses: reviewdog/action-ansiblelint@master
@@ -26,6 +27,7 @@ jobs:
           reporter: github-check
           level: warning
           ansiblelint_flags: "ansiblelint-testdata/test.yml"
+          ansiblelint_version: 24.12.2
 
       - name: ansible-lint github-pr-review
         uses: reviewdog/action-ansiblelint@master
@@ -33,3 +35,4 @@ jobs:
           github_token: ${{ secrets.github_token }}
           reporter: github-pr-review
           ansiblelint_flags: "ansiblelint-testdata/test.yml"
+          ansiblelint_version: 24.12.2
