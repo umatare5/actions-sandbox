@@ -1,0 +1,35 @@
+name: reviewdog
+on:
+  pull_request:
+jobs:
+  ansible-lint:
+    name: runner / ansible-lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: ansible-lint github-pr-check
+        uses: reviewdog/action-ansiblelint@master
+        with:
+          github_token: ${{ secrets.github_token }}
+          reporter: github-pr-check
+          ansiblelint_flags: "ansiblelint-testdata/test.yml"
+
+      - name: ansible-lint github-check
+        uses: reviewdog/action-ansiblelint@master
+        with:
+          github_token: ${{ secrets.github_token }}
+          reporter: github-check
+          level: warning
+          ansiblelint_flags: "ansiblelint-testdata/test.yml"
+
+      - name: ansible-lint github-pr-review
+        uses: reviewdog/action-ansiblelint@master
+        with:
+          github_token: ${{ secrets.github_token }}
+          reporter: github-pr-review
+          ansiblelint_flags: "ansiblelint-testdata/test.yml"
