@@ -13,7 +13,7 @@ jobs:
           python-version: "3.11"
 
       - name: ansible-lint github-pr-check
-        uses: reviewdog/action-ansiblelint@master
+        uses: umatare5/action-ansiblelint@244a5ac59a9e881e206ef575841fd1427a3ee0e7
         with:
           github_token: ${{ secrets.github_token }}
           reporter: github-pr-check
@@ -21,7 +21,7 @@ jobs:
           ansiblelint_version: 24.12.2
 
       - name: ansible-lint github-check
-        uses: reviewdog/action-ansiblelint@master
+        uses: umatare5/action-ansiblelint@244a5ac59a9e881e206ef575841fd1427a3ee0e7
         with:
           github_token: ${{ secrets.github_token }}
           reporter: github-check
@@ -30,7 +30,7 @@ jobs:
           ansiblelint_version: 24.12.2
 
       - name: ansible-lint github-pr-review
-        uses: reviewdog/action-ansiblelint@master
+        uses: umatare5/action-ansiblelint@244a5ac59a9e881e206ef575841fd1427a3ee0e7
         with:
           github_token: ${{ secrets.github_token }}
           reporter: github-pr-review
