@@ -1,0 +1,38 @@
+name: reviewdog
+on:
+  pull_request:
+jobs:
+  ansible-lint:
+    name: runner / ansible-lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: ansible-lint github-pr-check
+        uses: umatare5/action-ansiblelint@244a5ac59a9e881e206ef575841fd1427a3ee0e7
+        with:
+          github_token: ${{ secrets.github_token }}
+          reporter: github-pr-check
+          ansiblelint_flags: "ansiblelint-testdata/test.yml"
+          ansiblelint_version: 24.12.2
+
+      - name: ansible-lint github-check
+        uses: umatare5/action-ansiblelint@244a5ac59a9e881e206ef575841fd1427a3ee0e7
+        with:
+          github_token: ${{ secrets.github_token }}
+          reporter: github-check
+          level: warning
+          ansiblelint_flags: "ansiblelint-testdata/test.yml"
+          ansiblelint_version: 24.12.2
+
+      - name: ansible-lint github-pr-review
+        uses: umatare5/action-ansiblelint@244a5ac59a9e881e206ef575841fd1427a3ee0e7
+        with:
+          github_token: ${{ secrets.github_token }}
+          reporter: github-pr-review
+          ansiblelint_flags: "ansiblelint-testdata/test.yml"
+          ansiblelint_version: 24.12.2
