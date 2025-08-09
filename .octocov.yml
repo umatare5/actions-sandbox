@@ -1,0 +1,13 @@
+coverage:
+  paths:
+    - coverage.out
+codeToTestRatio:
+  code:
+    - '**/*.go'
+    - '!**/*_test.go'
+  test:
+    - '**/*_test.go'
+testExecutionTime:
+  acceptable: 1 min
+  steps:
+    - 'Generate Go coverage from testdata'
